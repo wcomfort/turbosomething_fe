@@ -27,9 +27,9 @@ function renderCar(car){
     let price = document.createElement('h4')
     price.innerText=car.price
     let hp = document.createElement('h4')
-    hp.innerText=car.hp
+    hp.innerText= `Horsepower: ${car.hp}`
     let tq = document.createElement('h4')
-    tq.innerText=car.tq
+    tq.innerText= `Torque: ${car.tq}`
     let des = document.createElement('p')
     des.innerText=car.des
     let link = document.createElement('a')
