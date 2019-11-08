@@ -1,9 +1,16 @@
-/* .card-card {
+.car-card {
     margin:auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
     float: center;
     text-align: center;
-    height: 300px;
+    height: 500px;
     width: 500px;
     border: solid 1px;
     background-color: ghostwhite;
-  } */
+  }
+
+  .img{
+      height: 150px;
+      width: 200px;
+  }

@@ -13,8 +13,13 @@ function getCars(){
 }
 
 function renderCar(car){
-    console.log(car)
-    let card = document.getElementById('car-card')
+    let container = document.getElementById('car-container')
+    let card = document.createElement('div')
+    card.classList.add('car-card')
+    container.appendChild(card)
+    let img = document.createElement('img')
+    img.classList.add('img')
+    img.src=car.picture 
     let make = document.createElement('h2')
     make.innerText=car.make
     let model = document.createElement('h4')
@@ -29,5 +34,6 @@ function renderCar(car){
     des.innerText=car.des
     let link = document.createElement('a')
     link.href=car.link
-    card.append(make, model, price, hp, tq, des, link)
+    link.innerText= "Manufacturer"
+    card.append(img, make, model, price, hp, tq, des, link)
 }
