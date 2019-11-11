@@ -89,6 +89,7 @@ function submitCar(event){
         const descendingBtn = document.createElement('button')
         div.appendChild(descendingBtn)
         descendingBtn.innerText = 'Sort by Descending'
+        descendingBtn.addEventListener('click', sortByHpDescend)
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
@@ -97,6 +98,10 @@ function submitCar(event){
             })
 
     }
+    function sortByHpDescend(event) {
+        console.log('hp descending order')
+    }
+
     function sortByTq(event) {
         clearCards()
         //Ascending tq
@@ -104,12 +109,16 @@ function submitCar(event){
         const descendingBtn = document.createElement('button')
         div.appendChild(descendingBtn)
         descendingBtn.innerText = 'Sort by Descending'
+        descendingBtn.addEventListener('click', sortByTqDescend)
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
                 const sortedArray = dataArray.sort((current,next) => current.tq - next.tq)
                 sortedArray.forEach(car => renderCar(car))
             })
+    }
+    function sortByTqDescend(event) {
+        console.log('tq descending')
     }
 
     function sortByPrice(event){
@@ -119,6 +128,7 @@ function submitCar(event){
         const descendingBtn = document.createElement('button')
         div.appendChild(descendingBtn)
         descendingBtn.innerText = 'Sort by Descending'
+        descendingBtn.addEventListener('click', sortByPriceDescend)
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
@@ -128,4 +138,8 @@ function submitCar(event){
                 sortedArray.forEach(car => renderCar(car))
             })
         // console.log(event.target)
+    }
+
+    function sortByPriceDescend(){
+        console.log('price descending')
     }
