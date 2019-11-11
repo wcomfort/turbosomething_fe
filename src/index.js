@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", () =>{
     console.log('connected')
-  
+
+
+    const homeButton = document.querySelector('#home')
+
     const hp = document.querySelector('#sort-by-hp')
     const tq = document.querySelector('#sort-by-tq')
     const price = document.querySelector('#sort-by-price')
     hp.addEventListener('click', sortByHp)
     tq.addEventListener('click', sortByTq)
     price.addEventListener('click', sortByPrice)
+
     // getCars()
     welcome()
 })
@@ -173,14 +177,69 @@ function submitCar(event){
           })
           document.getElementById("car-form").reset()
   }
-
-    function sortByHp(event) {
-        console.log(event.target)
+    function clearCards(){
+        const cardList = document.querySelectorAll('.card')
+        cardList.forEach(card => card.remove())
+        document.querySelector('#descending-ascending').innerHTML = ""
     }
+    function sortByHp(event) {
+        clearCards()
+        //Ascending HP
+        const div = document.querySelector('#descending-ascending')
+        const descendingBtn = document.createElement('button')
+        div.appendChild(descendingBtn)
+        descendingBtn.innerText = 'Sort by Descending'
+        descendingBtn.addEventListener('click', sortByHpDescend)
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+                const sortedArray = dataArray.sort((current,next) => current.hp - next.hp)
+                sortedArray.forEach(car => renderCar(car))
+            })
+
+    }
+    function sortByHpDescend(event) {
+        console.log('hp descending order')
+    }
+
     function sortByTq(event) {
-        console.log(event.target)
+        clearCards()
+        //Ascending tq
+        const div = document.querySelector('#descending-ascending')
+        const descendingBtn = document.createElement('button')
+        div.appendChild(descendingBtn)
+        descendingBtn.innerText = 'Sort by Descending'
+        descendingBtn.addEventListener('click', sortByTqDescend)
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+                const sortedArray = dataArray.sort((current,next) => current.tq - next.tq)
+                sortedArray.forEach(car => renderCar(car))
+            })
+    }
+    function sortByTqDescend(event) {
+        console.log('tq descending')
     }
 
     function sortByPrice(event){
-        console.log(event.target)
+        clearCards()
+        //Ascending price
+        const div = document.querySelector('#descending-ascending')
+        const descendingBtn = document.createElement('button')
+        div.appendChild(descendingBtn)
+        descendingBtn.innerText = 'Sort by Descending'
+        descendingBtn.addEventListener('click', sortByPriceDescend)
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+
+                const sortedArray = dataArray.sort((current,next) =>  current.price - next.price)
+
+                sortedArray.forEach(car => renderCar(car))
+            })
+        // console.log(event.target)
+    }
+
+    function sortByPriceDescend(){
+        console.log('price descending')
     }
