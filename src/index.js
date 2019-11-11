@@ -18,7 +18,7 @@ function getCars(){
 function renderCar(car){
     let container = document.getElementById('car-container')
     let card = document.createElement('div')
-    card.classList.add('car-card')
+    card.classList.add('card', 'col-7')
     container.appendChild(card)
     // card.addEventListener('click', console.log('clicked!'))
     let img = document.createElement('img')

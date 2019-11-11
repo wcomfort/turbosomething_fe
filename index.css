@@ -1,14 +1,22 @@
-.car-card {
+/* .car-card {
     margin:auto;
     margin-bottom: 50px;
     margin-top: 50px;
     float: center;
     text-align: center;
     height: 500px;
-    width: 500px;
+    width: 750px;
     border: solid 1px;
     background-color: ghostwhite;
+  } */
+
+  #car-container {
+    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y:hidden
   }
+
+
 
   .img{
       height: 150px;
