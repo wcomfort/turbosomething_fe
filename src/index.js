@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", () =>{
     console.log('connected')
     getCars()
-    const form = document.getElementById('car-form')
-    form.addEventListener('submit', submitCar)
-
+  
     const hp = document.querySelector('#sort-by-hp')
     const tq = document.querySelector('#sort-by-tq')
     const price = document.querySelector('#sort-by-price')
