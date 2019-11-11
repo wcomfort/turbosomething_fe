@@ -200,6 +200,19 @@ function submitCar(event){
     }
     function sortByHpDescend(event) {
         console.log('hp descending order')
+        clearCards()
+        //Ascending tq
+        const div = document.querySelector('#descending-ascending')
+        const ascendingBtn = document.createElement('button')
+        div.appendChild(ascendingBtn)
+        ascendingBtn.innerText = 'Sort by Ascending'
+        ascendingBtn.addEventListener('click', sortByHp)
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+                const sortedArray = dataArray.sort((current,next) => next.hp - current.hp)
+                sortedArray.forEach(car => renderCar(car))
+            })
     }
 
     function sortByTq(event) {
@@ -219,6 +232,19 @@ function submitCar(event){
     }
     function sortByTqDescend(event) {
         console.log('tq descending')
+        clearCards()
+        //Ascending tq
+        const div = document.querySelector('#descending-ascending')
+        const ascendingBtn = document.createElement('button')
+        div.appendChild(ascendingBtn)
+        ascendingBtn.innerText = 'Sort by Ascending'
+        ascendingBtn.addEventListener('click', sortByTq)
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+                const sortedArray = dataArray.sort((current,next) => next.tq - current.tq)
+                sortedArray.forEach(car => renderCar(car))
+            })
     }
 
     function sortByPrice(event){
@@ -242,4 +268,17 @@ function submitCar(event){
 
     function sortByPriceDescend(){
         console.log('price descending')
+        clearCards()
+        //Ascending tq
+        const div = document.querySelector('#descending-ascending')
+        const ascendingBtn = document.createElement('button')
+        div.appendChild(ascendingBtn)
+        ascendingBtn.innerText = 'Sort by Ascending'
+        ascendingBtn.addEventListener('click', sortByPrice)
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+                const sortedArray = dataArray.sort((current,next) => next.price - current.price)
+                sortedArray.forEach(car => renderCar(car))
+            })
     }
