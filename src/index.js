@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () =>{
     console.log('connected')
-    getCars()
   
     const hp = document.querySelector('#sort-by-hp')
     const tq = document.querySelector('#sort-by-tq')
