@@ -4,12 +4,15 @@ document.addEventListener("DOMContentLoaded", () =>{
     const form = document.getElementById('car-form')
     form.addEventListener('submit', submitCar)
 
+    const homeButton = document.querySelector('#home')
     const hp = document.querySelector('#sort-by-hp')
     const tq = document.querySelector('#sort-by-tq')
     const price = document.querySelector('#sort-by-price')
     hp.addEventListener('click', sortByHp)
     tq.addEventListener('click', sortByTq)
     price.addEventListener('click', sortByPrice)
+
+//    render home page
 })
 
 function getCars(){
@@ -77,16 +80,43 @@ function submitCar(event){
     function clearCards(){
         const cardList = document.querySelectorAll('.card')
         cardList.forEach(card => card.remove())
+
     }
     function sortByHp(event) {
         clearCards()
+        //Ascending HP
+
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+                const sortedArray = dataArray.sort((current,next) => current.hp - next.hp)
+                sortedArray.forEach(car => renderCar(car))
+            })
+
     }
     function sortByTq(event) {
         clearCards()
-        // console.log(event.target)
+        //Ascending tq
+
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+                const sortedArray = dataArray.sort((current,next) => current.tq - next.tq)
+                sortedArray.forEach(car => renderCar(car))
+            })
     }
 
     function sortByPrice(event){
         clearCards()
+        //Ascending price
+
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+
+                const sortedArray = dataArray.sort((current,next) =>  current.price - next.price)
+
+                sortedArray.forEach(car => renderCar(car))
+            })
         // console.log(event.target)
     }
