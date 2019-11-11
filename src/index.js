@@ -80,12 +80,15 @@ function submitCar(event){
     function clearCards(){
         const cardList = document.querySelectorAll('.card')
         cardList.forEach(card => card.remove())
-
+        document.querySelector('#descending-ascending').innerHTML = ""
     }
     function sortByHp(event) {
         clearCards()
         //Ascending HP
-
+        const div = document.querySelector('#descending-ascending')
+        const descendingBtn = document.createElement('button')
+        div.appendChild(descendingBtn)
+        descendingBtn.innerText = 'Sort by Descending'
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
@@ -97,7 +100,10 @@ function submitCar(event){
     function sortByTq(event) {
         clearCards()
         //Ascending tq
-
+        const div = document.querySelector('#descending-ascending')
+        const descendingBtn = document.createElement('button')
+        div.appendChild(descendingBtn)
+        descendingBtn.innerText = 'Sort by Descending'
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
@@ -109,7 +115,10 @@ function submitCar(event){
     function sortByPrice(event){
         clearCards()
         //Ascending price
-
+        const div = document.querySelector('#descending-ascending')
+        const descendingBtn = document.createElement('button')
+        div.appendChild(descendingBtn)
+        descendingBtn.innerText = 'Sort by Descending'
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
