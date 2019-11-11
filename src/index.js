@@ -74,14 +74,19 @@ function submitCar(event){
           })
           document.getElementById("car-form").reset()
   }
-
+    function clearCards(){
+        const cardList = document.querySelectorAll('.card')
+        cardList.forEach(card => card.remove())
+    }
     function sortByHp(event) {
-        console.log(event.target)
+        clearCards()
     }
     function sortByTq(event) {
-        console.log(event.target)
+        clearCards()
+        // console.log(event.target)
     }
 
     function sortByPrice(event){
-        console.log(event.target)
+        clearCards()
+        // console.log(event.target)
     }
