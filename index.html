@@ -3,6 +3,9 @@
 
 <html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="src/index.js"></script>
@@ -16,20 +19,20 @@
 <h1 id="logo">TurboSomething</h1>
     <div class="topnav">
         <button id="home">Home</button> <!-- Needs styling -->
-        <button id="Sort-By">Sort By</button>  <!-- Needs styling -->
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort-By
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" id='sort-by-hp'>HP</a>
+                <a class="dropdown-item" id='sort-by-tq'>Torque</a>
+                <a class="dropdown-item" id='sort-by-price'>Price</a>
+            </div>
+        </div>
         <button id="favorites"> My Favorites</button>
 
     </div>
-<!--<div class="dropdown">-->
-<!--    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--        Dropdown button-->
-<!--    </button>-->
-<!--    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-<!--        <a class="dropdown-item" href="#">Action</a>-->
-<!--        <a class="dropdown-item" href="#">Another action</a>-->
-<!--        <a class="dropdown-item" href="#">Something else here</a>-->
-<!--    </div>-->
-<!--</div>-->
+
     <div id="form">
         <form id="car-form">
                 <h4>Add A Car:</h4><br>
@@ -46,5 +49,8 @@
     </div>
     <div id="car-container">
     </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
