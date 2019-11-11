@@ -1,3 +1,5 @@
+let user = "";
+
 document.addEventListener("DOMContentLoaded", () =>{
     console.log('connected')
 
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 })
 
 function welcome(){
-    let welcome = document.getElementById('welcome')
+    const welcome = document.getElementById('welcome')
     let welcomeText = document.createElement('h1')
     welcomeText.innerText = "Welcome to Turbosomething"
     let login = document.createElement("button")
@@ -53,21 +55,27 @@ function login(event){
     let form = document.getElementById('login')
     let email = document.getElementById('u-email').value
     let password = document.getElementById('u-password').value
-    form.remove()
+    
 
-    // fetch("http://localhost:3000/users", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json"
-    //   },
-    //   body: JSON.stringify({email: email, password: password})
-    // })
-    // .then(res => res.json())
-    //   .then(user => {
-             
-    //       })
-    getCars()
+    fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({email: email, password: password})
+    })
+    .then(res => res.json())
+      .then(userObj => {
+         if (userObj){
+             user = userObj
+             console.log(user)
+            getCars()
+            form.remove()
+         } else{
+             alert("Not a Valid Login. Enter Credentials or Create Account")
+         }
+        })
 }
 
 function userCreateAccount(){
