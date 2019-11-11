@@ -14,3 +14,11 @@
       height: 150px;
       width: 200px;
   }
+
+.topnav {
+    padding: 30px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 30px;
+}
