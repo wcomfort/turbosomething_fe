@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () =>{
     welcome()
 })
 
+
+
 function welcome(){
     const welcome = document.getElementById('welcome')
     let welcomeText = document.createElement('h1')
@@ -31,7 +33,6 @@ function welcome(){
 }
 
 function userLogin() {
-    console.log('login')
     let welcome = document.getElementById('welcome')
     welcome.remove()
     let text = document.createElement('h1')
@@ -69,7 +70,6 @@ function login(event){
       .then(userObj => {
          if (userObj){
              user = userObj
-             console.log(user)
             getCars()
             form.remove()
          } else{
@@ -120,7 +120,7 @@ function createCar(){
     <input type="text" id="carpicture" name="picture" placeholder="Enter Image URL" value="">
     <input type="text" id="carmake" name="make" placeholder="Make" value="">
     <input type="text" id="carmodel" name="model" placeholder="Model" value="">
-    <input type="text" id="carprice" name="price" placeholder="Price" value="">
+    <input type="integer" id="carprice" name="price" placeholder="Price" value="">
     <input type="integer" id="carhp" name="hp" placeholder="Horsepower" value="">
     <input type="integer" id="cartq" name="tq" placeholder="Torque" value="">
     <input type="text" id="cardes" name="des" placeholder="Description" value="">
