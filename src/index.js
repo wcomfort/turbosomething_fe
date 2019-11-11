@@ -1,27 +1,18 @@
 document.addEventListener("DOMContentLoaded", () =>{
     console.log('connected')
-<<<<<<< HEAD
-  
-=======
-    getCars()
-    const form = document.getElementById('car-form')
-    form.addEventListener('submit', submitCar)
+
 
     const homeButton = document.querySelector('#home')
->>>>>>> tiff-fe-filerfunc
+
     const hp = document.querySelector('#sort-by-hp')
     const tq = document.querySelector('#sort-by-tq')
     const price = document.querySelector('#sort-by-price')
     hp.addEventListener('click', sortByHp)
     tq.addEventListener('click', sortByTq)
     price.addEventListener('click', sortByPrice)
-<<<<<<< HEAD
+
     // getCars()
     welcome()
-=======
-
-//    render home page
->>>>>>> tiff-fe-filerfunc
 })
 
 function welcome(){
