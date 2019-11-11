@@ -3,6 +3,13 @@ document.addEventListener("DOMContentLoaded", () =>{
     getCars()
     const form = document.getElementById('car-form')
     form.addEventListener('submit', submitCar)
+
+    const hp = document.querySelector('#sort-by-hp')
+    const tq = document.querySelector('#sort-by-tq')
+    const price = document.querySelector('#sort-by-price')
+    hp.addEventListener('click', sortByHp)
+    tq.addEventListener('click', sortByTq)
+    price.addEventListener('click', sortByPrice)
 })
 
 function getCars(){
@@ -67,3 +74,14 @@ function submitCar(event){
           })
           document.getElementById("car-form").reset()
   }
+
+    function sortByHp(event) {
+        console.log(event.target)
+    }
+    function sortByTq(event) {
+        console.log(event.target)
+    }
+
+    function sortByPrice(event){
+        console.log(event.target)
+    }
