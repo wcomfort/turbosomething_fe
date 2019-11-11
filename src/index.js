@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () =>{
+    console.log('connected')
     getCars()
 })
 
@@ -17,6 +18,7 @@ function renderCar(car){
     let card = document.createElement('div')
     card.classList.add('car-card')
     container.appendChild(card)
+    // card.addEventListener('click', console.log('clicked!'))
     let img = document.createElement('img')
     img.classList.add('img')
     img.src=car.picture 
