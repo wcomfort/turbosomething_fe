@@ -139,7 +139,7 @@ function renderCar(car){
     let model = document.createElement('h4')
     model.innerText=car.model
     let price = document.createElement('h4')
-    price.innerText=car.price
+    price.innerText=`$${car.price}`
     let hp = document.createElement('h4')
     hp.innerText= `Horsepower: ${car.hp}`
     let tq = document.createElement('h4')
