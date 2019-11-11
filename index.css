@@ -16,9 +16,9 @@
   }
 
 .topnav {
-    padding: 30px;
-    text-align: center;
+    padding: 20px;
+    text-align: left;
     background: #1abc9c;
     color: white;
-    font-size: 30px;
+    font-size: 10px;
 }
