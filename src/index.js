@@ -295,3 +295,4 @@ function submitCar(event){
                 sortedArray.forEach(car => renderCar(car))
             })
     }
+
