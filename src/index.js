@@ -1,8 +1,14 @@
 let user = "";
 
+
 document.addEventListener("DOMContentLoaded", () =>{
     console.log('connected')
 
+    let nav = document.getElementById('nav')
+    let favBtn = document.createElement('button')
+    favBtn.addEventListener('click', myFavs)
+    favBtn.innerText = "My Favorites"
+    nav.appendChild(favBtn)
 
     const homeButton = document.querySelector('#home')
 
@@ -139,10 +145,10 @@ function renderCar(car){
     let card = document.createElement('div')
     card.classList.add('card', 'col-7')
     container.appendChild(card)
-    card.addEventListener('click', favorite)
     card.id = car.id 
     let img = document.createElement('img')
     img.classList.add('img')
+    img.addEventListener('click', favorite)
     img.src=car.picture 
     let make = document.createElement('h2')
     make.innerText=car.make
@@ -299,8 +305,9 @@ function submitCar(event){
 
 function favorite(event){
     console.log('clicked')
-    let carId = parseInt(event.target.id)
+    let carId = parseInt(event.target.parentElement.id)
     let userId = user.id
+
     fetch("http://localhost:3000/user_cars", {
         method: "POST",
         headers: {
@@ -311,6 +318,43 @@ function favorite(event){
       })
       .then(res => res.json())
         .then(fav => {
-            console.log(fav)
+            alert('Added to Favorites!')
         })
 }
+
+function myFavs(event){
+    console.log('fetching favs')
+    clearCards()
+    fetch('http://localhost:3000/user_cars')
+    .then(res => res.json())
+    .then(favs => {
+        favs.forEach(fav =>{
+            if (fav.user_id == user.id){
+                let myCar = fav.car
+                renderCar(myCar)
+                let card = document.getElementById(`${fav.car.id}`)
+                let remove = document.createElement('button')
+                remove.innerText="Remove from Favorites"
+                remove.addEventListener('click', deleteFav)
+                card.appendChild(remove)
+            }
+        })
+    })
+
+    // function deleteFav(event){
+    //     console.log('deleting')
+    //     debugger
+    // //    let carId = parseInt(event.target.parentElement.id)
+    // }  
+}
+
+
+// function releasePokemon(event) {
+//     let pokemonId = event.target.dataset.pokemonId
+  
+//     fetch(`${POKEMONS_URL}/${pokemonId}`, {
+//       method: "DELETE"
+//     }).then(() => {
+//      event.target.parentElement.remove()
+//     })
+//   }
