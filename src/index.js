@@ -5,10 +5,22 @@ document.addEventListener("DOMContentLoaded", () =>{
     console.log('connected')
 
     let nav = document.getElementById('nav')
+    let home = document.createElement('button')
+    home.addEventListener('click', getCars)
+    home.innerText = 'Home'
+//     let filter = document.createElement('div')
+//     filter.innerHTML = `   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+//     Sort-By
+// </button>
+// <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+//     <a class="dropdown-item" id='sort-by-hp'>HP</a>
+//     <a class="dropdown-item" id='sort-by-tq'>Torque</a>
+//     <a class="dropdown-item" id='sort-by-price'>Price</a>
+// </div>`
     let favBtn = document.createElement('button')
     favBtn.addEventListener('click', myFavs)
     favBtn.innerText = "My Favorites"
-    nav.appendChild(favBtn)
+    nav.append(home, favBtn)
 
     const homeButton = document.querySelector('#home')
 
@@ -145,6 +157,7 @@ function createUser(event){
 }
 
 function getCars(){
+    clearCards()
     fetch('http://localhost:3000/cars')
     .then(res => res.json())
     .then(car => {
@@ -366,6 +379,7 @@ function myFavs(event){
                 let myCar = fav.car
                 renderCar(myCar)
                 let card = document.getElementById(`${fav.car.id}`)
+                card.dataset.favId = fav.id
                 let remove = document.createElement('button')
                 remove.innerText="Remove from Favorites"
                 remove.addEventListener('click', deleteFav)
@@ -374,11 +388,17 @@ function myFavs(event){
         })
     })
 
-    // function deleteFav(event){
-    //     console.log('deleting')
-    //     debugger
-    // //    let carId = parseInt(event.target.parentElement.id)
-    // }  
+    function deleteFav(event){
+        let target = event.target
+       let favoriteId = parseInt(event.target.parentElement.dataset.favId)
+
+       fetch(`http://localhost:3000/user_cars/${favoriteId}`,{
+           method: "DELETE"
+       })
+       .then(() => {
+         target.parentElement.remove()
+       })
+    }  
 }
 
 
