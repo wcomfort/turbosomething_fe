@@ -139,7 +139,8 @@ function renderCar(car){
     let card = document.createElement('div')
     card.classList.add('card', 'col-7')
     container.appendChild(card)
-    // card.addEventListener('click', console.log('clicked!'))
+    card.addEventListener('click', favorite)
+    card.id = car.id 
     let img = document.createElement('img')
     img.classList.add('img')
     img.src=car.picture 
@@ -296,3 +297,20 @@ function submitCar(event){
             })
     }
 
+function favorite(event){
+    console.log('clicked')
+    let carId = parseInt(event.target.id)
+    let userId = user.id
+    fetch("http://localhost:3000/user_cars", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({user_car:{user_id: userId, car_id: carId}})
+      })
+      .then(res => res.json())
+        .then(fav => {
+            console.log(fav)
+        })
+}
