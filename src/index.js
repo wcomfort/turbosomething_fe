@@ -42,6 +42,7 @@ function userLogin() {
    user.placeholder="email"
    user.id = 'u-email'
    let password = document.createElement('input')
+   password.setAttribute('type', 'password')
    password.placeholder="password"
    password.id = 'u-password'
    let submit = document.createElement('button')
@@ -117,14 +118,14 @@ function createCar(){
     let form = document.getElementById('form')
     form.innerHTML= `<form id="car-form">
     <h4>Add A Car:</h4><br>
-    <input type="text" id="carpicture" name="picture" placeholder="Enter Image URL" value="">
-    <input type="text" id="carmake" name="make" placeholder="Make" value="">
-    <input type="text" id="carmodel" name="model" placeholder="Model" value="">
-    <input type="integer" id="carprice" name="price" placeholder="Price" value="">
-    <input type="integer" id="carhp" name="hp" placeholder="Horsepower" value="">
-    <input type="integer" id="cartq" name="tq" placeholder="Torque" value="">
-    <input type="text" id="cardes" name="des" placeholder="Description" value="">
-    <input type="text" id="carlink" name="link" placeholder="Manufacturer Website" value="">
+    <input type="text" id="carpicture" name="picture" placeholder="Enter Image URL">
+    <input type="text" id="carmake" name="make" placeholder="Make">
+    <input type="text" id="carmodel" name="model" placeholder="Model">
+    <input type="integer" id="carprice" name="price" placeholder="Price">
+    <input type="integer" id="carhp" name="hp" placeholder="Horsepower">
+    <input type="integer" id="cartq" name="tq" placeholder="Torque">
+    <input type="text" id="cardes" name="des" placeholder="Description">
+    <input type="text" id="carlink" name="link" placeholder="Manufacturer Website">
     <input type="submit" name="submit" value="Add Car">
 </form>`
 let car = document.getElementById('car-form')
@@ -181,8 +182,11 @@ function submitCar(event){
     })
     .then(res => res.json())
       .then(car => {
-          debugger
-              renderCar(car)
+          if (car.id == null){
+              alert("Please enter all fields in form!")
+          } else{
+            renderCar(car)
+        }
           })
           document.getElementById("car-form").reset()
   }
