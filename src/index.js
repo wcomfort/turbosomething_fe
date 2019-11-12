@@ -85,23 +85,57 @@ function userCreateAccount(){
     welcome.remove()
     let text = document.createElement('h1')
     text.innerText="Create An Account"
-   let form = document.getElementById('newacct')
+   let div = document.getElementById('newacct')
+    let form = document.createElement('form')
    let firstName = document.createElement('input')
    firstName.placeholder="First Name"
+    firstName.id = 'firstName'
    let lastName = document.createElement('input')
    lastName.placeholder="Last Name"
+    lastName.id = 'lastName'
    let email = document.createElement('input')
    email.placeholder="Email"
+    email.id = 'email'
    let password = document.createElement('input')
    password.placeholder="Password"
+    password.id = 'password'
    let submit = document.createElement('button')
+    submit.id = 'submit'
+    form.id = 'create-user-form'
    submit.innerText="Create Account"
-   submit.addEventListener('submit', newAcct)
+    div.appendChild(form)
    form.append(text, firstName, lastName, email, password, submit)
+    form.addEventListener('submit', createUser)
 }
 
-function newAcct(){
-    console.log('creating account')
+function createUser(event){
+
+    event.preventDefault()
+
+    console.log('event')
+    const firstName = document.querySelector("#firstName").value
+    const lastName = document.querySelector("#lastName").value
+    const email = document.querySelector("#email").value
+    const password = document.querySelector("#password").value
+
+    fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({user:{'firstName': firstName, 'lastName': lastName, 'email': email, 'password': password}})
+    })
+        .then(res => res.json())
+        .then(user => {
+
+            if (user.id == null){
+                alert("Please enter all fields in form!")
+            } else{
+                getCars()
+            }
+        })
+      document.querySelector("#create-user-form").innerHTML = ' '
 }
 
 function getCars(){
@@ -139,10 +173,11 @@ function renderCar(car){
     let card = document.createElement('div')
     card.classList.add('card', 'col-7')
     container.appendChild(card)
-    // card.addEventListener('click', console.log('clicked!'))
+    // card.addEventListener('click', favorite)
+    card.id = car.id
     let img = document.createElement('img')
     img.classList.add('img')
-    img.src=car.picture 
+    img.src=car.picture
     let make = document.createElement('h2')
     make.innerText=car.make
     let model = document.createElement('h4')
@@ -160,7 +195,6 @@ function renderCar(car){
     link.innerText= "Manufacturer"
     card.append(img, make, model, price, hp, tq, des, link)
 }
-
 function submitCar(event){
     console.log('submitting')
     event.preventDefault()
