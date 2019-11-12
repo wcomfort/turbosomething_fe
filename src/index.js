@@ -1,3 +1,5 @@
+let user = "";
+
 document.addEventListener("DOMContentLoaded", () =>{
     console.log('connected')
 
@@ -15,8 +17,10 @@ document.addEventListener("DOMContentLoaded", () =>{
     welcome()
 })
 
+
+
 function welcome(){
-    let welcome = document.getElementById('welcome')
+    const welcome = document.getElementById('welcome')
     let welcomeText = document.createElement('h1')
     welcomeText.innerText = "Welcome to Turbosomething"
     let login = document.createElement("button")
@@ -29,7 +33,6 @@ function welcome(){
 }
 
 function userLogin() {
-    console.log('login')
     let welcome = document.getElementById('welcome')
     welcome.remove()
     let text = document.createElement('h1')
@@ -53,21 +56,26 @@ function login(event){
     let form = document.getElementById('login')
     let email = document.getElementById('u-email').value
     let password = document.getElementById('u-password').value
-    form.remove()
+    
 
-    // fetch("http://localhost:3000/users", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json"
-    //   },
-    //   body: JSON.stringify({email: email, password: password})
-    // })
-    // .then(res => res.json())
-    //   .then(user => {
-             
-    //       })
-    getCars()
+    fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({email: email, password: password})
+    })
+    .then(res => res.json())
+      .then(userObj => {
+         if (userObj){
+             user = userObj
+            getCars()
+            form.remove()
+         } else{
+             alert("Not a Valid Login. Enter Credentials or Create Account")
+         }
+        })
 }
 
 function userCreateAccount(){
@@ -112,7 +120,7 @@ function createCar(){
     <input type="text" id="carpicture" name="picture" placeholder="Enter Image URL" value="">
     <input type="text" id="carmake" name="make" placeholder="Make" value="">
     <input type="text" id="carmodel" name="model" placeholder="Model" value="">
-    <input type="text" id="carprice" name="price" placeholder="Price" value="">
+    <input type="integer" id="carprice" name="price" placeholder="Price" value="">
     <input type="integer" id="carhp" name="hp" placeholder="Horsepower" value="">
     <input type="integer" id="cartq" name="tq" placeholder="Torque" value="">
     <input type="text" id="cardes" name="des" placeholder="Description" value="">
@@ -139,7 +147,7 @@ function renderCar(car){
     let model = document.createElement('h4')
     model.innerText=car.model
     let price = document.createElement('h4')
-    price.innerText=car.price
+    price.innerText=`$${car.price}`
     let hp = document.createElement('h4')
     hp.innerText= `Horsepower: ${car.hp}`
     let tq = document.createElement('h4')
@@ -169,10 +177,11 @@ function submitCar(event){
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({picture: picture, make: make, model: model, price: price, hp: hp, tq: tq, des: des, link: link})
+      body: JSON.stringify({car:{'picture': picture, 'make': make, 'model': model, 'price': price, 'hp': hp, 'tq': tq, 'des': des, 'link': link}})
     })
     .then(res => res.json())
       .then(car => {
+          debugger
               renderCar(car)
           })
           document.getElementById("car-form").reset()
@@ -200,6 +209,19 @@ function submitCar(event){
     }
     function sortByHpDescend(event) {
         console.log('hp descending order')
+        clearCards()
+        //Ascending tq
+        const div = document.querySelector('#descending-ascending')
+        const ascendingBtn = document.createElement('button')
+        div.appendChild(ascendingBtn)
+        ascendingBtn.innerText = 'Sort by Ascending'
+        ascendingBtn.addEventListener('click', sortByHp)
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+                const sortedArray = dataArray.sort((current,next) => next.hp - current.hp)
+                sortedArray.forEach(car => renderCar(car))
+            })
     }
 
     function sortByTq(event) {
@@ -219,6 +241,19 @@ function submitCar(event){
     }
     function sortByTqDescend(event) {
         console.log('tq descending')
+        clearCards()
+        //Ascending tq
+        const div = document.querySelector('#descending-ascending')
+        const ascendingBtn = document.createElement('button')
+        div.appendChild(ascendingBtn)
+        ascendingBtn.innerText = 'Sort by Ascending'
+        ascendingBtn.addEventListener('click', sortByTq)
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+                const sortedArray = dataArray.sort((current,next) => next.tq - current.tq)
+                sortedArray.forEach(car => renderCar(car))
+            })
     }
 
     function sortByPrice(event){
@@ -242,4 +277,17 @@ function submitCar(event){
 
     function sortByPriceDescend(){
         console.log('price descending')
+        clearCards()
+        //Ascending tq
+        const div = document.querySelector('#descending-ascending')
+        const ascendingBtn = document.createElement('button')
+        div.appendChild(ascendingBtn)
+        ascendingBtn.innerText = 'Sort by Ascending'
+        ascendingBtn.addEventListener('click', sortByPrice)
+        fetch('http://localhost:3000/cars')
+            .then(result => result.json())
+            .then(dataArray => {
+                const sortedArray = dataArray.sort((current,next) => next.price - current.price)
+                sortedArray.forEach(car => renderCar(car))
+            })
     }
