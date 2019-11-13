@@ -2,13 +2,13 @@ let user = "";
 
 
 document.addEventListener("DOMContentLoaded", () =>{
-    console.log('connected')
-    const createCarBtn = document.querySelector('#createCarBtn')
-    createCarBtn.addEventListener('click',createCar)
-    let nav = document.getElementById('nav')
-    let home = document.querySelector('#homeBtn')
-    home.addEventListener('click', getCars)
-    home.innerText = 'Home'
+    console.log('connected');
+    const createCarBtn = document.querySelector('#createCarBtn');
+    createCarBtn.addEventListener('click',createCar);
+    let nav = document.getElementById('nav');
+    let home = document.querySelector('#homeBtn');
+    home.addEventListener('click', getCars);
+    home.innerText = 'Home';
 //     let filter = document.createElement('div')
 //     filter.innerHTML = `   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 //     Sort-By
@@ -18,70 +18,70 @@ document.addEventListener("DOMContentLoaded", () =>{
 //     <a class="dropdown-item" id='sort-by-tq'>Torque</a>
 //     <a class="dropdown-item" id='sort-by-price'>Price</a>
 // </div>`
-    let favBtn = document.querySelector('#faveBtn')
-    favBtn.addEventListener('click', myFavs)
+    let favBtn = document.querySelector('#faveBtn');
+    favBtn.addEventListener('click', myFavs);
 
-    const homeButton = document.querySelector('#home')
+    const homeButton = document.querySelector('#home');
 
-    const hp = document.querySelector('#sort-by-hp')
-    const tq = document.querySelector('#sort-by-tq')
-    const price = document.querySelector('#sort-by-price')
-    hp.addEventListener('click', sortByHp)
-    tq.addEventListener('click', sortByTq)
-    price.addEventListener('click', sortByPrice)
+    const hp = document.querySelector('#sort-by-hp');
+    const tq = document.querySelector('#sort-by-tq');
+    const price = document.querySelector('#sort-by-price');
+    hp.addEventListener('click', sortByHp);
+    tq.addEventListener('click', sortByTq);
+    price.addEventListener('click', sortByPrice);
 
     // getCars()
     welcome()
-})
+});
 
 
 
 function welcome(){
-    const welcome = document.getElementById('welcome')
-    let welcomeText = document.createElement('h1')
-    welcomeText.innerText = "Welcome to Turbosomething"
-    let login = document.createElement("button")
-    login.innerText = "Login"
-    login.addEventListener('click', userLogin)
-    let create = document.createElement("button")
-    create.innerText = "Create Account"
-    create.addEventListener('click', userCreateAccount)
+    const welcome = document.getElementById('welcome');
+    let welcomeText = document.createElement('h1');
+    welcomeText.innerText = "Welcome to Turbosomething";
+    let login = document.createElement("button");
+    login.innerText = "Login";
+    login.addEventListener('click', userLogin);
+    let create = document.createElement("button");
+    create.innerText = "Create Account";
+    create.addEventListener('click', userCreateAccount);
     welcome.append(welcomeText, login, create)
 }
 
 function userLogin() {
-    let welcome = document.getElementById('welcome')
-    welcome.remove()
-    let text = document.createElement('h1')
-    text.innerText="Login"
-   let form = document.getElementById('login')
-    form.className = "form-inline"
-   let user = document.createElement('input')
-   user.placeholder="email"
-   user.id = 'u-email'
-    user.className = 'form-control mb-2 mr-sm-2'
+    let welcome = document.getElementById('welcome');
+    welcome.remove();
+    let text = document.createElement('h1');
+    text.innerText="Login";
+   let form = document.getElementById('login');
+    form.className = "form-inline";
+   let user = document.createElement('input');
+   user.placeholder="email";
+   user.id = 'u-email';
+    user.className = 'form-control mb-2 mr-sm-2';
 
-    let password = document.createElement('input')
-   password.setAttribute('type', 'password')
-   password.placeholder="password"
-   password.id = 'u-password'
-    password.className = 'form-control mb-2 mr-sm-2'
+    let password = document.createElement('input');
+   password.setAttribute('type', 'password');
+   password.placeholder="password";
+   password.id = 'u-password';
+    password.className = 'form-control mb-2 mr-sm-2';
 
-    let submit = document.createElement('button')
-   submit.id = "login-btn"
-   submit.innerText="Login"
-    submit.className = 'btn btn-primary'
+    let submit = document.createElement('button');
+   submit.id = "login-btn";
+   submit.innerText="Login";
+    submit.className = 'btn btn-primary';
 
-    form.append(text, user, password, submit)
+    form.append(text, user, password, submit);
    form.addEventListener('submit', login)
 }
 
 function login(event){
-    event.preventDefault()
-    let form = document.getElementById('login')
+    event.preventDefault();
+    let form = document.getElementById('login');
 
-    let email = document.getElementById('u-email').value
-    let password = document.getElementById('u-password').value
+    let email = document.getElementById('u-email').value;
+    let password = document.getElementById('u-password').value;
 
 
     fetch("http://localhost:3000/login", {
@@ -95,8 +95,8 @@ function login(event){
     .then(res => res.json())
       .then(userObj => {
          if (userObj){
-             user = userObj
-            getCars()
+             user = userObj;
+            getCars();
             form.remove()
          } else{
              alert("Not a Valid Login. Enter Credentials or Create Account")
@@ -105,49 +105,49 @@ function login(event){
 }
 
 function userCreateAccount(){
-    console.log('new account')
-    let welcome = document.getElementById('welcome')
-    welcome.remove()
-    let text = document.createElement('h1')
-    text.innerText="Create An Account"
-   let div = document.getElementById('newacct')
+    console.log('new account');
+    let welcome = document.getElementById('welcome');
+    welcome.remove();
+    let text = document.createElement('h1');
+    text.innerText="Create An Account";
+   let div = document.getElementById('newacct');
 
-    let form = document.createElement('form')
-   let firstName = document.createElement('input')
-   firstName.placeholder="First Name"
-    firstName.id = 'firstName'
-    firstName.className = 'form-control mb-2 mr-sm-2'
-   let lastName = document.createElement('input')
-   lastName.placeholder="Last Name"
-    lastName.id = 'lastName'
-    lastName.className = 'form-control mb-2 mr-sm-2'
-   let email = document.createElement('input')
-   email.placeholder="Email"
-    email.id = 'email'
-    email.className = 'form-control mb-2 mr-sm-2'
-   let password = document.createElement('input')
-   password.placeholder="Password"
-    password.id = 'password'
-    password.className = 'form-control mb-2 mr-sm-2'
-   let submit = document.createElement('button')
-    submit.id = 'submit'
-    form.id = 'create-user-form'
-   submit.innerText="Create Account"
-    submit.className = 'btn btn-primary'
-    div.appendChild(form)
-   form.append(text, firstName, lastName, email, password, submit)
+    let form = document.createElement('form');
+   let firstName = document.createElement('input');
+   firstName.placeholder="First Name";
+    firstName.id = 'firstName';
+    firstName.className = 'form-control mb-2 mr-sm-2';
+   let lastName = document.createElement('input');
+   lastName.placeholder="Last Name";
+    lastName.id = 'lastName';
+    lastName.className = 'form-control mb-2 mr-sm-2';
+   let email = document.createElement('input');
+   email.placeholder="Email";
+    email.id = 'email';
+    email.className = 'form-control mb-2 mr-sm-2';
+   let password = document.createElement('input');
+   password.placeholder="Password";
+    password.id = 'password';
+    password.className = 'form-control mb-2 mr-sm-2';
+   let submit = document.createElement('button');
+    submit.id = 'submit';
+    form.id = 'create-user-form';
+   submit.innerText="Create Account";
+    submit.className = 'btn btn-primary';
+    div.appendChild(form);
+   form.append(text, firstName, lastName, email, password, submit);
     form.addEventListener('submit', createUser)
 }
 
 function createUser(event){
 
-    event.preventDefault()
+    event.preventDefault();
 
-    console.log('event')
-    const firstName = document.querySelector("#firstName").value
-    const lastName = document.querySelector("#lastName").value
-    const email = document.querySelector("#email").value
-    const password = document.querySelector("#password").value
+    console.log('event');
+    const firstName = document.querySelector("#firstName").value;
+    const lastName = document.querySelector("#lastName").value;
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
 
     fetch("http://localhost:3000/users", {
         method: "POST",
@@ -165,12 +165,12 @@ function createUser(event){
             } else{
                 getCars()
             }
-        })
+        });
       document.querySelector("#create-user-form").innerHTML = ' '
 }
 
 function getCars(){
-    clearCards()
+    clearCards();
     fetch('http://localhost:3000/cars')
     .then(res => res.json())
     .then(car => {
@@ -181,7 +181,7 @@ function getCars(){
 }
 
 function createCar(){
-    let form = document.getElementById('form')
+    let form = document.getElementById('form');
     form.innerHTML= `<form id="car-form">
     <h4>Add A Car:</h4><br>
    <div class="form-inline">
@@ -200,8 +200,8 @@ function createCar(){
     <input type="submit" class="btn btn-primary" name="submit" value="Add Car">
         </div>
 
-</form>`
-let car = document.getElementById('car-form')
+</form>`;
+let car = document.getElementById('car-form');
     // car.className = 'form-group'
 
     car.addEventListener('submit', submitCar)
@@ -209,44 +209,59 @@ let car = document.getElementById('car-form')
 
 function renderCar(car){
     // createCar()
-    let container = document.getElementById('car-container')
+    let container = document.getElementById('car-container');
     // body.append(form, container)
-    let card = document.createElement('div')
-    card.classList.add('card', 'col-7')
+    let card = document.createElement('div');
+    card.classList.add('card', 'col-7');
+    card.id = car.id;
+    let img = document.createElement('img');
+    img.classList.add('img');
+    img.addEventListener('click', favorite);
+    img.src=car.picture;
+    let make = document.createElement('h2');
+    make.innerText=car.make;
+    let model = document.createElement('h4');
+    model.innerText=car.model;
+    let price = document.createElement('h4');
+    price.innerText=`$${car.price}`;
+    let hp = document.createElement('h4');
+    hp.innerText= `Horsepower: ${car.hp}`;
+    let tq = document.createElement('h4');
+    tq.innerText= `Torque: ${car.tq}`;
+    let des = document.createElement('p');
+    des.innerText=car.des;
+    let link = document.createElement('a');
+    link.href=car.link;
+    link.innerText= "Manufacturer";
+    card.append(img, make, model, price, hp, tq, des, link);
+    card.innerHTML = `  <div class="card">
+    <img class="card-img-top" src='${img.src}' alt="Card image cap" id="car-image">
+    <div class="card-body">
+      <h3 class="card-title" id='make-model'>${car.make} </h3>
+      <h4 class="card-title" id='make-model'>${car.model}</h4><br>
+      <h5 class="card-text" id="card-tq">Torque: ${car.tq} lb-ft</h5>
+      <h5 class="card-text" id="card-hp">Horsepower: ${car.hp} hp</h5>
+            <h6 class="card-text" id='des'>${car.des}</h6><br>
+
+            
+
+      <a class="card-manufacturer" href="${car.link}">Manufacturer</a> </p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>`;
     container.appendChild(card)
-    card.id = car.id 
-    let img = document.createElement('img')
-    img.classList.add('img')
-    img.addEventListener('click', favorite)
-    img.src=car.picture 
-    let make = document.createElement('h2')
-    make.innerText=car.make
-    let model = document.createElement('h4')
-    model.innerText=car.model
-    let price = document.createElement('h4')
-    price.innerText=`$${car.price}`
-    let hp = document.createElement('h4')
-    hp.innerText= `Horsepower: ${car.hp}`
-    let tq = document.createElement('h4')
-    tq.innerText= `Torque: ${car.tq}`
-    let des = document.createElement('p')
-    des.innerText=car.des
-    let link = document.createElement('a')
-    link.href=car.link
-    link.innerText= "Manufacturer"
-    card.append(img, make, model, price, hp, tq, des, link)
 }
 function submitCar(event){
-    console.log('submitting')
-    event.preventDefault()
-    const picture = document.getElementById("carpicture").value
-    const make = document.getElementById("carmake").value
-    const model = document.getElementById("carmodel").value
-    const price = document.getElementById("carprice").value
-    const hp = document.getElementById("carhp").value
-    const tq = document.getElementById("cartq").value
-    const des = document.getElementById("cardes").value
-    const link = document.getElementById("carlink").value
+
+    console.log('submitting');
+    event.preventDefault();
+    const picture = document.getElementById("carpicture").value;
+    const make = document.getElementById("carmake").value;
+    const model = document.getElementById("carmodel").value;
+    const price = document.getElementById("carprice").value;
+    const hp = document.getElementById("carhp").value;
+    const tq = document.getElementById("cartq").value;
+    const des = document.getElementById("cardes").value;
+    const link = document.getElementById("carlink").value;
     fetch("http://localhost:3000/cars", {
       method: "POST",
       headers: {
@@ -262,101 +277,101 @@ function submitCar(event){
           } else{
             renderCar(car)
         }
-          })
+          });
           document.getElementById("car-form").reset()
   }
     function clearCards(){
-        const cardList = document.querySelectorAll('.card')
-        cardList.forEach(card => card.remove())
+        const cardList = document.querySelectorAll('.card');
+        cardList.forEach(card => card.remove());
         document.querySelector('#descending-ascending').innerHTML = ""
     }
     function sortByHp(event) {
-        clearCards()
+        clearCards();
         //Ascending HP
-        const div = document.querySelector('#descending-ascending')
-        const descendingBtn = document.createElement('button')
-        div.appendChild(descendingBtn)
-        descendingBtn.className ='btn btn-dark'
+        const div = document.querySelector('#descending-ascending');
+        const descendingBtn = document.createElement('button');
+        div.appendChild(descendingBtn);
+        descendingBtn.className ='btn btn-dark';
 
-        descendingBtn.innerText = 'Sort by Descending'
-        descendingBtn.addEventListener('click', sortByHpDescend)
+        descendingBtn.innerText = 'Sort by Descending';
+        descendingBtn.addEventListener('click', sortByHpDescend);
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
-                const sortedArray = dataArray.sort((current,next) => current.hp - next.hp)
+                const sortedArray = dataArray.sort((current,next) => current.hp - next.hp);
                 sortedArray.forEach(car => renderCar(car))
             })
 
     }
     function sortByHpDescend(event) {
-        console.log('hp descending order')
-        clearCards()
+        console.log('hp descending order');
+        clearCards();
         //Ascending tq
-        const div = document.querySelector('#descending-ascending')
-        const ascendingBtn = document.createElement('button')
-        div.appendChild(ascendingBtn)
-        ascendingBtn.className ='btn btn-dark'
+        const div = document.querySelector('#descending-ascending');
+        const ascendingBtn = document.createElement('button');
+        div.appendChild(ascendingBtn);
+        ascendingBtn.className ='btn btn-dark';
 
-        ascendingBtn.innerText = 'Sort by Ascending'
-        ascendingBtn.addEventListener('click', sortByHp)
+        ascendingBtn.innerText = 'Sort by Ascending';
+        ascendingBtn.addEventListener('click', sortByHp);
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
-                const sortedArray = dataArray.sort((current,next) => next.hp - current.hp)
+                const sortedArray = dataArray.sort((current,next) => next.hp - current.hp);
                 sortedArray.forEach(car => renderCar(car))
             })
     }
 
     function sortByTq(event) {
-        clearCards()
+        clearCards();
         //Ascending tq
-        const div = document.querySelector('#descending-ascending')
-        const descendingBtn = document.createElement('button')
-        div.appendChild(descendingBtn)
-        descendingBtn.className ='btn btn-dark'
-        descendingBtn.innerText = 'Sort by Descending'
-        descendingBtn.addEventListener('click', sortByTqDescend)
+        const div = document.querySelector('#descending-ascending');
+        const descendingBtn = document.createElement('button');
+        div.appendChild(descendingBtn);
+        descendingBtn.className ='btn btn-dark';
+        descendingBtn.innerText = 'Sort by Descending';
+        descendingBtn.addEventListener('click', sortByTqDescend);
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
-                const sortedArray = dataArray.sort((current,next) => current.tq - next.tq)
+                const sortedArray = dataArray.sort((current,next) => current.tq - next.tq);
                 sortedArray.forEach(car => renderCar(car))
             })
     }
     function sortByTqDescend(event) {
-        console.log('tq descending')
-        clearCards()
+        console.log('tq descending');
+        clearCards();
         //Ascending tq
-        const div = document.querySelector('#descending-ascending')
-        const ascendingBtn = document.createElement('button')
-        div.appendChild(ascendingBtn)
-        ascendingBtn.className ='btn btn-dark'
+        const div = document.querySelector('#descending-ascending');
+        const ascendingBtn = document.createElement('button');
+        div.appendChild(ascendingBtn);
+        ascendingBtn.className ='btn btn-dark';
 
-        ascendingBtn.innerText = 'Sort by Ascending'
-        ascendingBtn.addEventListener('click', sortByTq)
+        ascendingBtn.innerText = 'Sort by Ascending';
+        ascendingBtn.addEventListener('click', sortByTq);
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
-                const sortedArray = dataArray.sort((current,next) => next.tq - current.tq)
+                const sortedArray = dataArray.sort((current,next) => next.tq - current.tq);
                 sortedArray.forEach(car => renderCar(car))
             })
     }
 
     function sortByPrice(event){
-        clearCards()
+        clearCards();
         //Ascending price
-        const div = document.querySelector('#descending-ascending')
-        const descendingBtn = document.createElement('button')
-        div.appendChild(descendingBtn)
-        descendingBtn.innerText = 'Sort by Descending'
-        descendingBtn.className ='btn btn-dark'
+        const div = document.querySelector('#descending-ascending');
+        const descendingBtn = document.createElement('button');
+        div.appendChild(descendingBtn);
+        descendingBtn.innerText = 'Sort by Descending';
+        descendingBtn.className ='btn btn-dark';
 
-        descendingBtn.addEventListener('click', sortByPriceDescend)
+        descendingBtn.addEventListener('click', sortByPriceDescend);
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
 
-                const sortedArray = dataArray.sort((current,next) =>  current.price - next.price)
+                const sortedArray = dataArray.sort((current,next) =>  current.price - next.price);
 
                 sortedArray.forEach(car => renderCar(car))
             })
@@ -364,27 +379,27 @@ function submitCar(event){
     }
 
     function sortByPriceDescend(){
-        console.log('price descending')
-        clearCards()
+        console.log('price descending');
+        clearCards();
         //Ascending tq
-        const div = document.querySelector('#descending-ascending')
-        const ascendingBtn = document.createElement('button')
-        ascendingBtn.className ='btn btn-dark'
-        div.appendChild(ascendingBtn)
-        ascendingBtn.innerText = 'Sort by Ascending'
-        ascendingBtn.addEventListener('click', sortByPrice)
+        const div = document.querySelector('#descending-ascending');
+        const ascendingBtn = document.createElement('button');
+        ascendingBtn.className ='btn btn-dark';
+        div.appendChild(ascendingBtn);
+        ascendingBtn.innerText = 'Sort by Ascending';
+        ascendingBtn.addEventListener('click', sortByPrice);
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
             .then(dataArray => {
-                const sortedArray = dataArray.sort((current,next) => next.price - current.price)
+                const sortedArray = dataArray.sort((current,next) => next.price - current.price);
                 sortedArray.forEach(car => renderCar(car))
             })
     }
 
 function favorite(event){
-    console.log('clicked')
-    let carId = parseInt(event.target.parentElement.id)
-    let userId = user.id
+    console.log('clicked');
+    let carId = parseInt(event.target.parentElement.id);
+    let userId = user.id;
 
     fetch("http://localhost:3000/user_cars", {
         method: "POST",
@@ -401,28 +416,28 @@ function favorite(event){
 }
 
 function myFavs(event){
-    console.log('fetching favs')
-    clearCards()
+    console.log('fetching favs');
+    clearCards();
     fetch('http://localhost:3000/user_cars')
     .then(res => res.json())
     .then(favs => {
         favs.forEach(fav =>{
             if (fav.user_id == user.id){
-                let myCar = fav.car
-                renderCar(myCar)
-                let card = document.getElementById(`${fav.car.id}`)
-                card.dataset.favId = fav.id
-                let remove = document.createElement('button')
-                remove.innerText="Remove from Favorites"
-                remove.addEventListener('click', deleteFav)
+                let myCar = fav.car;
+                renderCar(myCar);
+                let card = document.getElementById(`${fav.car.id}`);
+                card.dataset.favId = fav.id;
+                let remove = document.createElement('button');
+                remove.innerText="Remove from Favorites";
+                remove.addEventListener('click', deleteFav);
                 card.appendChild(remove)
             }
         })
-    })
+    });
 
     function deleteFav(event){
-        let target = event.target
-       let favoriteId = parseInt(event.target.parentElement.dataset.favId)
+        let target = event.target;
+       let favoriteId = parseInt(event.target.parentElement.dataset.favId);
 
        fetch(`http://localhost:3000/user_cars/${favoriteId}`,{
            method: "DELETE"
