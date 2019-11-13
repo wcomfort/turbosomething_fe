@@ -1,7 +1,7 @@
 let user = "";
 
-
 document.addEventListener("DOMContentLoaded", () =>{
+<<<<<<< HEAD
     console.log('connected');
     const createCarBtn = document.querySelector('#createCarBtn');
     createCarBtn.addEventListener('click',createCar);
@@ -31,10 +31,26 @@ document.addEventListener("DOMContentLoaded", () =>{
     price.addEventListener('click', sortByPrice);
 
     // getCars()
+=======
+    console.log('connected')
+    const createCarBtn = document.querySelector('#createCarBtn')
+    createCarBtn.addEventListener('click',createCar)
+    let nav = document.getElementById('nav')
+    let home = document.querySelector('#homeBtn')
+    home.addEventListener('click', getCars)
+    home.innerText = 'Home'
+    let favBtn = document.querySelector('#faveBtn')
+    favBtn.addEventListener('click', myFavs)
+    const homeButton = document.querySelector('#home')
+    const hp = document.querySelector('#sort-by-hp')
+    const tq = document.querySelector('#sort-by-tq')
+    const price = document.querySelector('#sort-by-price')
+    hp.addEventListener('click', sortByHp)
+    tq.addEventListener('click', sortByTq)
+    price.addEventListener('click', sortByPrice)
+>>>>>>> b999bc009c7eb289904ee0cc402009f06be57682
     welcome()
 });
-
-
 
 function welcome(){
     const welcome = document.getElementById('welcome');
@@ -50,6 +66,7 @@ function welcome(){
 }
 
 function userLogin() {
+<<<<<<< HEAD
     let welcome = document.getElementById('welcome');
     welcome.remove();
     let text = document.createElement('h1');
@@ -84,6 +101,36 @@ function login(event){
     let password = document.getElementById('u-password').value;
 
 
+=======
+    let welcome = document.getElementById('welcome')
+    welcome.remove()
+    let text = document.createElement('h1')
+    text.innerText="Login"
+    let form = document.getElementById('login')
+    form.className = "form-inline"
+    let user = document.createElement('input')
+    user.placeholder="email"
+    user.id = 'u-email'
+    user.className = 'form-control mb-2 mr-sm-2'
+    let password = document.createElement('input')
+    password.setAttribute('type', 'password')
+    password.placeholder="password"
+    password.id = 'u-password'
+    password.className = 'form-control mb-2 mr-sm-2'
+    let submit = document.createElement('button')
+    submit.id = "login-btn"
+    submit.innerText="Login"
+    submit.className = 'btn btn-primary'
+    form.append(text, user, password, submit)
+    form.addEventListener('submit', login)
+}
+
+function login(event){
+    event.preventDefault()
+    let form = document.getElementById('login')
+    let email = document.getElementById('u-email').value
+    let password = document.getElementById('u-password').value
+>>>>>>> b999bc009c7eb289904ee0cc402009f06be57682
     fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
@@ -95,16 +142,24 @@ function login(event){
     .then(res => res.json())
       .then(userObj => {
          if (userObj){
+<<<<<<< HEAD
              user = userObj;
             getCars();
             form.remove()
          } else{
+=======
+             user = userObj
+            getCars()
+            form.remove()} 
+            else{
+>>>>>>> b999bc009c7eb289904ee0cc402009f06be57682
              alert("Not a Valid Login. Enter Credentials or Create Account")
-         }
-        })
+        }
+    })
 }
 
 function userCreateAccount(){
+<<<<<<< HEAD
     console.log('new account');
     let welcome = document.getElementById('welcome');
     welcome.remove();
@@ -136,6 +191,38 @@ function userCreateAccount(){
     submit.className = 'btn btn-primary';
     div.appendChild(form);
    form.append(text, firstName, lastName, email, password, submit);
+=======
+    console.log('new account')
+    let welcome = document.getElementById('welcome')
+    welcome.remove()
+    let text = document.createElement('h1')
+    text.innerText="Create An Account"
+    let div = document.getElementById('newacct')
+    let form = document.createElement('form')
+    let firstName = document.createElement('input')
+    firstName.placeholder="First Name"
+    firstName.id = 'firstName'
+    firstName.className = 'form-control mb-2 mr-sm-2'
+    let lastName = document.createElement('input')
+    lastName.placeholder="Last Name"
+    lastName.id = 'lastName'
+    lastName.className = 'form-control mb-2 mr-sm-2'
+    let email = document.createElement('input')
+    email.placeholder="Email"
+    email.id = 'email'
+    email.className = 'form-control mb-2 mr-sm-2'
+    let password = document.createElement('input')
+    password.placeholder="Password"
+    password.id = 'password'
+    password.className = 'form-control mb-2 mr-sm-2'
+    let submit = document.createElement('button')
+    submit.id = 'submit'
+    form.id = 'create-user-form'
+    submit.innerText="Create Account"
+    submit.className = 'btn btn-primary'
+    div.appendChild(form)
+    form.append(text, firstName, lastName, email, password, submit)
+>>>>>>> b999bc009c7eb289904ee0cc402009f06be57682
     form.addEventListener('submit', createUser)
 }
 
