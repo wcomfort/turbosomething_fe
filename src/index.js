@@ -302,6 +302,7 @@ function renderCar(car){
     des.classList.add("card-text")
     let link = document.createElement('a');
     link.href=car.link;
+    link.classList.add('link')
     link.innerText= "Manufacturer";
     card.append(img, make, model, price, hp, tq, des, link);
 
