@@ -6,10 +6,8 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     console.log('connected');
     let createCarBtn = document.querySelector('#createCarBtn');
-    // createCarBtn.addEventListener('click',createCar);
-   let carForm = document.querySelector('#form')
+    let carForm = document.querySelector('#form')
     createCarBtn.addEventListener('click', () => {
-        // hide & seek with the form
         formDisplay = !formDisplay
         if (formDisplay) {
             createCar()
@@ -21,15 +19,6 @@ document.addEventListener("DOMContentLoaded", () =>{
     let home = document.querySelector('#homeBtn');
     home.addEventListener('click', getCars);
     home.innerText = 'Home';
-//     let filter = document.createElement('div')
-//     filter.innerHTML = `   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//     Sort-By
-// </button>
-// <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-//     <a class="dropdown-item" id='sort-by-hp'>HP</a>
-//     <a class="dropdown-item" id='sort-by-tq'>Torque</a>
-//     <a class="dropdown-item" id='sort-by-price'>Price</a>
-// </div>`
     let favBtn = document.querySelector('#faveBtn');
     favBtn.addEventListener('click', myFavs);
 
@@ -42,11 +31,8 @@ document.addEventListener("DOMContentLoaded", () =>{
     tq.addEventListener('click', sortByTq);
     price.addEventListener('click', sortByPrice);
 
-    // getCars()
     welcome()
 });
-
-
 
 function welcome(){
 
@@ -73,26 +59,26 @@ function userLogin() {
     welcome.remove();
     let text = document.createElement('h1');
     text.innerText="Login";
-   let form = document.getElementById('login');
+    let form = document.getElementById('login');
     form.className = "form-inline";
-   let user = document.createElement('input');
-   user.placeholder="email";
-   user.id = 'u-email';
+    let user = document.createElement('input');
+    user.placeholder="email";
+    user.id = 'u-email';
     user.className = 'form-control mb-2 mr-sm-2';
 
     let password = document.createElement('input');
-   password.setAttribute('type', 'password');
-   password.placeholder="password";
-   password.id = 'u-password';
+    password.setAttribute('type', 'password');
+    password.placeholder="password";
+    password.id = 'u-password';
     password.className = 'form-control mb-2 mr-sm-2';
 
     let submit = document.createElement('button');
-   submit.id = "login-btn";
-   submit.innerText="Login";
+    submit.id = "login-btn";
+    submit.innerText="Login";
     submit.className = 'btn btn-primary';
 
     form.append(text, user, password, submit);
-   form.addEventListener('submit', login)
+    form.addEventListener('submit', login)
 }
 
 function login(event){
@@ -130,32 +116,32 @@ function userCreateAccount(){
     welcome.remove();
     let text = document.createElement('h1');
     text.innerText="Create An Account";
-   let div = document.getElementById('newacct');
+    let div = document.getElementById('newacct');
 
     let form = document.createElement('form');
-   let firstName = document.createElement('input');
-   firstName.placeholder="First Name";
+    let firstName = document.createElement('input');
+    firstName.placeholder="First Name";
     firstName.id = 'firstName';
     firstName.className = 'form-control mb-2 mr-sm-2';
-   let lastName = document.createElement('input');
-   lastName.placeholder="Last Name";
+    let lastName = document.createElement('input');
+    lastName.placeholder="Last Name";
     lastName.id = 'lastName';
     lastName.className = 'form-control mb-2 mr-sm-2';
-   let email = document.createElement('input');
-   email.placeholder="Email";
+    let email = document.createElement('input');
+    email.placeholder="Email";
     email.id = 'email';
     email.className = 'form-control mb-2 mr-sm-2';
-   let password = document.createElement('input');
-   password.placeholder="Password";
+    let password = document.createElement('input');
+    password.placeholder="Password";
     password.id = 'password';
     password.className = 'form-control mb-2 mr-sm-2';
-   let submit = document.createElement('button');
+    let submit = document.createElement('button');
     submit.id = 'submit';
     form.id = 'create-user-form';
-   submit.innerText="Create Account";
+    submit.innerText="Create Account";
     submit.className = 'btn btn-primary';
     div.appendChild(form);
-   form.append(text, firstName, lastName, email, password, submit);
+    form.append(text, firstName, lastName, email, password, submit);
     form.addEventListener('submit', createUser)
 }
 
@@ -193,8 +179,7 @@ function getCars(){
     clearCards();
     fetch('http://localhost:3000/cars')
     .then(res => res.json())
-    .then(car => {
-        // debugger 
+    .then(car => { 
         car.forEach((car) =>{
             renderCar(car)})
     })
@@ -207,7 +192,7 @@ function createCar(){
     form.innerHTML= `<form id="car-form">
   
     <h4>Add A Car:</h4><br>
-   <div class="form-inline">
+    <div class="form-inline">
    
     <input type="text"  class="form-control mb-2 mr-sm-2" id="carpicture" name="picture" placeholder="Enter Image URL">
     <input type="text"  class="form-control mb-2 mr-sm-2" id="carmake" name="make" placeholder="Make">
@@ -223,53 +208,12 @@ function createCar(){
     <input type="submit" class="btn btn-primary" name="submit" value="Add Car">
         </div>
 
-</form>`;
-let car = document.getElementById('car-form');
-    // car.className = 'form-group'
-
+    </form>`;
+    let car = document.getElementById('car-form');
     car.addEventListener('submit', submitCar)
 }
-// function createNavBar() {
-// `<nav class="navbar navbar-expand-lg navbar-light bg-light">
-//         <header class="masthead">
-//         <div class="container d-flex h-100 align-items-center">
-//         <div class="mx-auto text-center">
-//         <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
-//         <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
-//     <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
-//     </div>
-//     </div>
-//     </header>
-//     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-//         <span class="navbar-toggler-icon"></span>
-//         </button>
-//         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-//         <ul class="navbar-nav">
-//         <li class="nav-item active">
-//         <a class="nav-link" id="homeBtn" href="#">Home <span class="sr-only">(current)</span></a>
-//     </li>
-//     <li class="home">
-//         <a class="nav-link" id="createCarBtn" href="#">Create Car</a>
-//     </li>
-//     <li class="nav-item">
-//         <a class="nav-link" id="faveBtn" href="#">My Favorites</a>
-//     </li>
-//     <li class="nav-item dropdown">
-//         <a class="nav-link dropdown-toggle" href="#" id="sortByDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-//         Sort By
-//     </a>
-//     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-//         <a class="dropdown-item" id='sort-by-hp'>HP</a>
-//         <a class="dropdown-item" id='sort-by-tq'>Torque</a>
-//         <a class="dropdown-item" id='sort-by-price'>Price</a>
-//         </div>
-//         </li>
-//         </ul>
-//         </div>
-//         </nav>`
-// }
+
 function renderCar(car){
-    // createCar()
 
     document.getElementById("navbar").style.visibility = "visible";
     let createCarBtn = document.querySelector('#createCarBtn')
@@ -348,7 +292,6 @@ function submitCar(event){
     }
     function sortByHp(event) {
         clearCards();
-        //Ascending HP
         const div = document.querySelector('#descending-ascending');
         const descendingBtn = document.createElement('button');
         div.appendChild(descendingBtn);
@@ -367,7 +310,6 @@ function submitCar(event){
     function sortByHpDescend(event) {
         console.log('hp descending order');
         clearCards();
-        //Ascending tq
         const div = document.querySelector('#descending-ascending');
         const ascendingBtn = document.createElement('button');
         div.appendChild(ascendingBtn);
@@ -385,7 +327,6 @@ function submitCar(event){
 
     function sortByTq(event) {
         clearCards();
-        //Ascending tq
         const div = document.querySelector('#descending-ascending');
         const descendingBtn = document.createElement('button');
         div.appendChild(descendingBtn);
@@ -402,7 +343,6 @@ function submitCar(event){
     function sortByTqDescend(event) {
         console.log('tq descending');
         clearCards();
-        //Ascending tq
         const div = document.querySelector('#descending-ascending');
         const ascendingBtn = document.createElement('button');
         div.appendChild(ascendingBtn);
@@ -420,7 +360,6 @@ function submitCar(event){
 
     function sortByPrice(event){
         clearCards();
-        //Ascending price
         const div = document.querySelector('#descending-ascending');
         const descendingBtn = document.createElement('button');
         div.appendChild(descendingBtn);
@@ -436,13 +375,11 @@ function submitCar(event){
 
                 sortedArray.forEach(car => renderCar(car))
             })
-        // console.log(event.target)
     }
 
     function sortByPriceDescend(){
         console.log('price descending');
         clearCards();
-        //Ascending tq
         const div = document.querySelector('#descending-ascending');
         const ascendingBtn = document.createElement('button');
         ascendingBtn.className ='btn btn-dark';
