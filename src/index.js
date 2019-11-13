@@ -49,14 +49,17 @@ document.addEventListener("DOMContentLoaded", () =>{
 
 
 function welcome(){
+
     document.getElementById("navbar").style.visibility = "hidden";
-
-
+    let page = document.querySelector('.page')
+    page.classList.add('masthead')
     const welcome = document.getElementById('welcome');
     let welcomeText = document.createElement('h1');
-    welcomeText.innerText = "Welcome to Turbosomething";
+    welcomeText.innerText = "Welcome to Turbosomething"
+    welcomeText.classList.add('jumbotron')
     let login = document.createElement("button");
     login.innerText = "Login";
+    login.classList.add('text-primary')
     login.addEventListener('click', userLogin);
     let create = document.createElement("button");
     create.innerText = "Create Account";
