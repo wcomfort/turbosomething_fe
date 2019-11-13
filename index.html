@@ -17,16 +17,37 @@
 <body>
 <!-- Nav toolbar -->
 <h1 id="logo">TurboSomething</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" id="homeBtn" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="home">
+                <a class="nav-link" id="createCarBtn" href="#">Create Car</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="faveBtn" href="#">My Favorites</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="sortByDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sort By
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" id='sort-by-hp'>HP</a>
+                    <a class="dropdown-item" id='sort-by-tq'>Torque</a>
+                    <a class="dropdown-item" id='sort-by-price'>Price</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
     <div class="topnav" id='nav'>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sort-By
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" id='sort-by-hp'>HP</a>
-                <a class="dropdown-item" id='sort-by-tq'>Torque</a>
-                <a class="dropdown-item" id='sort-by-price'>Price</a>
-            </div>
+
         </div>
     </div>
 

@@ -3,9 +3,10 @@ let user = "";
 
 document.addEventListener("DOMContentLoaded", () =>{
     console.log('connected')
-
+    const createCarBtn = document.querySelector('#createCarBtn')
+    createCarBtn.addEventListener('click',createCar)
     let nav = document.getElementById('nav')
-    let home = document.createElement('button')
+    let home = document.querySelector('#homeBtn')
     home.addEventListener('click', getCars)
     home.innerText = 'Home'
 //     let filter = document.createElement('div')
@@ -17,10 +18,8 @@ document.addEventListener("DOMContentLoaded", () =>{
 //     <a class="dropdown-item" id='sort-by-tq'>Torque</a>
 //     <a class="dropdown-item" id='sort-by-price'>Price</a>
 // </div>`
-    let favBtn = document.createElement('button')
+    let favBtn = document.querySelector('#faveBtn')
     favBtn.addEventListener('click', myFavs)
-    favBtn.innerText = "My Favorites"
-    nav.append(home, favBtn)
 
     const homeButton = document.querySelector('#home')
 
@@ -171,22 +170,31 @@ function createCar(){
     let form = document.getElementById('form')
     form.innerHTML= `<form id="car-form">
     <h4>Add A Car:</h4><br>
-    <input type="text" id="carpicture" name="picture" placeholder="Enter Image URL">
-    <input type="text" id="carmake" name="make" placeholder="Make">
-    <input type="text" id="carmodel" name="model" placeholder="Model">
-    <input type="integer" id="carprice" name="price" placeholder="Price">
-    <input type="integer" id="carhp" name="hp" placeholder="Horsepower">
-    <input type="integer" id="cartq" name="tq" placeholder="Torque">
-    <input type="text" id="cardes" name="des" placeholder="Description">
-    <input type="text" id="carlink" name="link" placeholder="Manufacturer Website">
-    <input type="submit" name="submit" value="Add Car">
+   <div class="form-inline">
+   
+    <input type="text"  class="form-control mb-2 mr-sm-2" id="carpicture" name="picture" placeholder="Enter Image URL">
+    <input type="text"  class="form-control mb-2 mr-sm-2" id="carmake" name="make" placeholder="Make">
+ 
+   
+    <input type="text"  class="form-control mb-2 mr-sm-2" id="carmodel" name="model" placeholder="Model">
+
+    <input type="integer"  class="form-control mb-2 mr-sm-2" id="carprice" name="price" placeholder="Price">
+    <input type="integer"  class="form-control mb-2 mr-sm-2" id="carhp" name="hp" placeholder="Horsepower">
+    <input type="integer"  class="form-control mb-2 mr-sm-2" id="cartq" name="tq" placeholder="Torque">
+    <input type="text"  class="form-control mb-2 mr-sm-2" id="cardes" name="des" placeholder="Description">
+    <input type="text"  class="form-control mb-2 mr-sm-2" id="carlink" name="link" placeholder="Manufacturer Website">
+    <input type="submit" class="btn btn-primary" name="submit" value="Add Car">
+        </div>
+
 </form>`
 let car = document.getElementById('car-form')
- car.addEventListener('submit', submitCar)
+    // car.className = 'form-group'
+
+    car.addEventListener('submit', submitCar)
 }
 
 function renderCar(car){
-    createCar()
+    // createCar()
     let container = document.getElementById('car-container')
     // body.append(form, container)
     let card = document.createElement('div')
@@ -254,6 +262,8 @@ function submitCar(event){
         const div = document.querySelector('#descending-ascending')
         const descendingBtn = document.createElement('button')
         div.appendChild(descendingBtn)
+        descendingBtn.className ='btn btn-dark'
+
         descendingBtn.innerText = 'Sort by Descending'
         descendingBtn.addEventListener('click', sortByHpDescend)
         fetch('http://localhost:3000/cars')
@@ -271,6 +281,8 @@ function submitCar(event){
         const div = document.querySelector('#descending-ascending')
         const ascendingBtn = document.createElement('button')
         div.appendChild(ascendingBtn)
+        ascendingBtn.className ='btn btn-dark'
+
         ascendingBtn.innerText = 'Sort by Ascending'
         ascendingBtn.addEventListener('click', sortByHp)
         fetch('http://localhost:3000/cars')
@@ -287,6 +299,7 @@ function submitCar(event){
         const div = document.querySelector('#descending-ascending')
         const descendingBtn = document.createElement('button')
         div.appendChild(descendingBtn)
+        descendingBtn.className ='btn btn-dark'
         descendingBtn.innerText = 'Sort by Descending'
         descendingBtn.addEventListener('click', sortByTqDescend)
         fetch('http://localhost:3000/cars')
@@ -303,6 +316,8 @@ function submitCar(event){
         const div = document.querySelector('#descending-ascending')
         const ascendingBtn = document.createElement('button')
         div.appendChild(ascendingBtn)
+        ascendingBtn.className ='btn btn-dark'
+
         ascendingBtn.innerText = 'Sort by Ascending'
         ascendingBtn.addEventListener('click', sortByTq)
         fetch('http://localhost:3000/cars')
@@ -320,6 +335,8 @@ function submitCar(event){
         const descendingBtn = document.createElement('button')
         div.appendChild(descendingBtn)
         descendingBtn.innerText = 'Sort by Descending'
+        descendingBtn.className ='btn btn-dark'
+
         descendingBtn.addEventListener('click', sortByPriceDescend)
         fetch('http://localhost:3000/cars')
             .then(result => result.json())
@@ -338,6 +355,7 @@ function submitCar(event){
         //Ascending tq
         const div = document.querySelector('#descending-ascending')
         const ascendingBtn = document.createElement('button')
+        ascendingBtn.className ='btn btn-dark'
         div.appendChild(ascendingBtn)
         ascendingBtn.innerText = 'Sort by Ascending'
         ascendingBtn.addEventListener('click', sortByPrice)
