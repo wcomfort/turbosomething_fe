@@ -1,4 +1,20 @@
+    #faveBtn {
+       color: white;
 
+   }
+    #createCarBtn{
+        color: white;
+    }
+    #homeBtn{
+        color: white;
+    }
+    #sortByDropdown{
+        color: white;
+    }
+    .dropdown-menu { background-color: dimgrey; }
+    #sort-by-hp { color: white }
+    #sort-by-tq { color: white }
+    #sort-by-price { color: white }
   #car-container {
     overflow: scroll;
     overflow-x: scroll;
@@ -291,7 +307,8 @@
 }
 
 body {
-    font-family: 'Nunito';
+    font-family: 'Montserrat', sans-serif;
+;
     letter-spacing: 0.0625em;
 }
 
