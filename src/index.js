@@ -55,26 +55,34 @@ function userLogin() {
     let text = document.createElement('h1')
     text.innerText="Login"
    let form = document.getElementById('login')
+    form.className = "form-inline"
    let user = document.createElement('input')
    user.placeholder="email"
    user.id = 'u-email'
-   let password = document.createElement('input')
+    user.className = 'form-control mb-2 mr-sm-2'
+
+    let password = document.createElement('input')
    password.setAttribute('type', 'password')
    password.placeholder="password"
    password.id = 'u-password'
-   let submit = document.createElement('button')
+    password.className = 'form-control mb-2 mr-sm-2'
+
+    let submit = document.createElement('button')
    submit.id = "login-btn"
    submit.innerText="Login"
-   form.append(text, user, password, submit)
+    submit.className = 'btn btn-primary'
+
+    form.append(text, user, password, submit)
    form.addEventListener('submit', login)
 }
 
 function login(event){
     event.preventDefault()
     let form = document.getElementById('login')
+
     let email = document.getElementById('u-email').value
     let password = document.getElementById('u-password').value
-    
+
 
     fetch("http://localhost:3000/login", {
       method: "POST",
@@ -103,23 +111,29 @@ function userCreateAccount(){
     let text = document.createElement('h1')
     text.innerText="Create An Account"
    let div = document.getElementById('newacct')
+
     let form = document.createElement('form')
    let firstName = document.createElement('input')
    firstName.placeholder="First Name"
     firstName.id = 'firstName'
+    firstName.className = 'form-control mb-2 mr-sm-2'
    let lastName = document.createElement('input')
    lastName.placeholder="Last Name"
     lastName.id = 'lastName'
+    lastName.className = 'form-control mb-2 mr-sm-2'
    let email = document.createElement('input')
    email.placeholder="Email"
     email.id = 'email'
+    email.className = 'form-control mb-2 mr-sm-2'
    let password = document.createElement('input')
    password.placeholder="Password"
     password.id = 'password'
+    password.className = 'form-control mb-2 mr-sm-2'
    let submit = document.createElement('button')
     submit.id = 'submit'
     form.id = 'create-user-form'
    submit.innerText="Create Account"
+    submit.className = 'btn btn-primary'
     div.appendChild(form)
    form.append(text, firstName, lastName, email, password, submit)
     form.addEventListener('submit', createUser)
