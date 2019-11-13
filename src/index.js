@@ -1,10 +1,20 @@
 let user = "";
-
-
+let formDisplay = false
 document.addEventListener("DOMContentLoaded", () =>{
+
     console.log('connected');
-    const createCarBtn = document.querySelector('#createCarBtn');
-    createCarBtn.addEventListener('click',createCar);
+    let createCarBtn = document.querySelector('#createCarBtn');
+    // createCarBtn.addEventListener('click',createCar);
+   let carForm = document.querySelector('#form')
+    createCarBtn.addEventListener('click', () => {
+        // hide & seek with the form
+        formDisplay = !formDisplay
+        if (formDisplay) {
+            createCar()
+        } else {
+            carForm.innerHTML = ''
+        }
+    })
     let nav = document.getElementById('nav');
     let home = document.querySelector('#homeBtn');
     home.addEventListener('click', getCars);
@@ -37,6 +47,9 @@ document.addEventListener("DOMContentLoaded", () =>{
 
 
 function welcome(){
+    document.getElementById("navbar").style.visibility = "hidden";
+
+
     const welcome = document.getElementById('welcome');
     let welcomeText = document.createElement('h1');
     welcomeText.innerText = "Welcome to Turbosomething";
@@ -50,6 +63,7 @@ function welcome(){
 }
 
 function userLogin() {
+
     let welcome = document.getElementById('welcome');
     welcome.remove();
     let text = document.createElement('h1');
@@ -181,8 +195,11 @@ function getCars(){
 }
 
 function createCar(){
+    let createCarBtn = document.querySelector('#createCarBtn');
     let form = document.getElementById('form');
+
     form.innerHTML= `<form id="car-form">
+  
     <h4>Add A Car:</h4><br>
    <div class="form-inline">
    
@@ -206,9 +223,52 @@ let car = document.getElementById('car-form');
 
     car.addEventListener('submit', submitCar)
 }
-
+// function createNavBar() {
+// `<nav class="navbar navbar-expand-lg navbar-light bg-light">
+//         <header class="masthead">
+//         <div class="container d-flex h-100 align-items-center">
+//         <div class="mx-auto text-center">
+//         <h1 class="mx-auto my-0 text-uppercase">Grayscale</h1>
+//         <h2 class="text-white-50 mx-auto mt-2 mb-5">A free, responsive, one page Bootstrap theme created by Start Bootstrap.</h2>
+//     <a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
+//     </div>
+//     </div>
+//     </header>
+//     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+//         <span class="navbar-toggler-icon"></span>
+//         </button>
+//         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+//         <ul class="navbar-nav">
+//         <li class="nav-item active">
+//         <a class="nav-link" id="homeBtn" href="#">Home <span class="sr-only">(current)</span></a>
+//     </li>
+//     <li class="home">
+//         <a class="nav-link" id="createCarBtn" href="#">Create Car</a>
+//     </li>
+//     <li class="nav-item">
+//         <a class="nav-link" id="faveBtn" href="#">My Favorites</a>
+//     </li>
+//     <li class="nav-item dropdown">
+//         <a class="nav-link dropdown-toggle" href="#" id="sortByDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+//         Sort By
+//     </a>
+//     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+//         <a class="dropdown-item" id='sort-by-hp'>HP</a>
+//         <a class="dropdown-item" id='sort-by-tq'>Torque</a>
+//         <a class="dropdown-item" id='sort-by-price'>Price</a>
+//         </div>
+//         </li>
+//         </ul>
+//         </div>
+//         </nav>`
+// }
 function renderCar(car){
     // createCar()
+
+    document.getElementById("navbar").style.visibility = "visible";
+    let createCarBtn = document.querySelector('#createCarBtn')
+    let carForm = document.querySelector('.form-inline')
+
     let container = document.getElementById('car-container');
     // body.append(form, container)
     let card = document.createElement('div');
