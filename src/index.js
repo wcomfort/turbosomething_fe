@@ -80,6 +80,7 @@ function userLogin() {
     let submit = document.createElement('button');
     submit.id = "login-btn";
     submit.innerText="Login";
+    submit.id = 'submitLogin'
     submit.className = 'btn-xs', 'loginSubmit';
     formContainer.append(text, form)
     form.append(user, password, submit);
@@ -220,6 +221,7 @@ function createCar(){
 }
 
 function renderCar(car){
+    document.querySelector(".centerBtn").style.visibility = "hidden";
 
     document.getElementById("navbar").style.visibility = "visible";
     let createCarBtn = document.querySelector('#createCarBtn')
