@@ -1,5 +1,7 @@
 let user = "";
 let formDisplay = false
+let power = new Audio("POWER.mp3");
+
 document.addEventListener("DOMContentLoaded", () =>{
 
     console.log('connected');
@@ -91,6 +93,7 @@ function userLogin() {
 }
 
 function login(event){
+    power.play()
     event.preventDefault();
     let form = document.getElementById('login');
 
@@ -502,13 +505,3 @@ function myFavs(event){
     }  
 }
 
-
-// function releasePokemon(event) {
-//     let pokemonId = event.target.dataset.pokemonId
-  
-//     fetch(`${POKEMONS_URL}/${pokemonId}`, {
-//       method: "DELETE"
-//     }).then(() => {
-//      event.target.parentElement.remove()
-//     })
-//   }
