@@ -270,7 +270,6 @@ function renderCar(car){
     let carForm = document.querySelector('.form-inline')
 
     let container = document.getElementById('car-container');
-    // body.append(form, container)
     let card = document.createElement('div');
     let img = document.createElement('img');
     img.src=car.picture;
