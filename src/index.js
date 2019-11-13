@@ -82,6 +82,7 @@ function userLogin() {
 }
 
 function login(event){
+    document.body.classList.remove('masthead')
     power.play()
     event.preventDefault();
     let form = document.getElementById('login');

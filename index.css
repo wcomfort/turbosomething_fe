@@ -52,7 +52,7 @@
 
   .page{
       margin: 10px;
-      background-color: darkred;  
+      background-color: rgba(139, 0, 0, .85);  
     }
 
   .img{
