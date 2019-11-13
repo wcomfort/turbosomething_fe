@@ -35,14 +35,15 @@ document.addEventListener("DOMContentLoaded", () =>{
 });
 
 function welcome(){
-
+    let buttonContainer = document.createElement('div')
+    buttonContainer.classList.add('centerBtn')
     document.getElementById("navbar").style.visibility = "hidden";
     let page = document.querySelector('.page')
     page.classList.add('masthead')
     const welcome = document.getElementById('welcome');
     let welcomeText = document.createElement('h1');
-    welcomeText.innerText = "Welcome to Turbosomething"
-    welcomeText.classList.add('jumbotron')
+    welcomeText.innerHTML = `<p>Welcome to <b><i>POWAH!!</i></b></p>`
+    welcomeText.classList.add('jumbotron','.text-center')
     let login = document.createElement("button");
     login.innerText = "Login";
     login.classList.add('text-primary')
@@ -50,34 +51,38 @@ function welcome(){
     let create = document.createElement("button");
     create.innerText = "Create Account";
     create.addEventListener('click', userCreateAccount);
-    welcome.append(welcomeText, login, create)
+    buttonContainer.append(login,create)
+    welcome.append(welcomeText, buttonContainer)
 }
 
 function userLogin() {
-
     let welcome = document.getElementById('welcome');
     welcome.remove();
+    let formContainer = document.createElement('div')
+    formContainer.classList.add('centerBtn')
+    document.body.append(formContainer)
     let text = document.createElement('h1');
     text.innerText="Login";
+    text.classList.add('card-title')
     let form = document.getElementById('login');
-    form.className = "form-inline";
+    form.className = "form-check form-check-inline";
     let user = document.createElement('input');
     user.placeholder="email";
     user.id = 'u-email';
-    user.className = 'form-control mb-2 mr-sm-2';
+    user.className = 'form-check form-check-inline';
 
     let password = document.createElement('input');
     password.setAttribute('type', 'password');
     password.placeholder="password";
     password.id = 'u-password';
-    password.className = 'form-control mb-2 mr-sm-2';
+    password.className = 'form-check form-check-inline';
 
     let submit = document.createElement('button');
     submit.id = "login-btn";
     submit.innerText="Login";
-    submit.className = 'btn btn-primary';
-
-    form.append(text, user, password, submit);
+    submit.className = 'btn-xs', 'loginSubmit';
+    formContainer.append(text, form)
+    form.append(user, password, submit);
     form.addEventListener('submit', login)
 }
 
