@@ -272,42 +272,37 @@ function renderCar(car){
     let container = document.getElementById('car-container');
     // body.append(form, container)
     let card = document.createElement('div');
+    let img = document.createElement('img');
+    img.src=car.picture;
+    img.classList.add("card-img-top")
+
+    img.addEventListener('click', favorite);
     card.classList.add('card', 'col-7');
     card.id = car.id;
-    let img = document.createElement('img');
-    img.classList.add('img');
-    img.addEventListener('click', favorite);
-    img.src=car.picture;
+
     let make = document.createElement('h2');
+    make.classList.add("card-title")
     make.innerText=car.make;
     let model = document.createElement('h4');
     model.innerText=car.model;
+    model.classList.add("card-title")
     let price = document.createElement('h4');
     price.innerText=`$${car.price}`;
+    price.classList.add("card-text")
     let hp = document.createElement('h4');
     hp.innerText= `Horsepower: ${car.hp}`;
+    hp.classList.add("card-text")
     let tq = document.createElement('h4');
     tq.innerText= `Torque: ${car.tq}`;
+    tq.classList.add("card-text")
     let des = document.createElement('p');
     des.innerText=car.des;
+    des.classList.add("card-text")
     let link = document.createElement('a');
     link.href=car.link;
     link.innerText= "Manufacturer";
     card.append(img, make, model, price, hp, tq, des, link);
-    card.innerHTML = `  <div class="card">
-    <img class="card-img-top" src='${img.src}' alt="Card image cap" id="car-image">
-    <div class="card-body">
-      <h3 class="card-title" id='make-model'>${car.make} </h3>
-      <h4 class="card-title" id='make-model'>${car.model}</h4><br>
-      <h5 class="card-text" id="card-tq">Torque: ${car.tq} lb-ft</h5>
-      <h5 class="card-text" id="card-hp">Horsepower: ${car.hp} hp</h5>
-            <h6 class="card-text" id='des'>${car.des}</h6><br>
 
-            
-
-      <a class="card-manufacturer" href="${car.link}">Manufacturer</a> </p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>`;
     container.appendChild(card)
 }
 function submitCar(event){
