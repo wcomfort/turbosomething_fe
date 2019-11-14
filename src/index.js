@@ -92,7 +92,7 @@ function userLogin() {
 function login(event){
     event.preventDefault();
     document.body.classList.remove('masthead')
-    power.play()
+
     let form = document.getElementById('login');
 
     let email = document.getElementById('u-email').value;
@@ -113,6 +113,7 @@ function login(event){
              user = userObj;
             getCars();
             form.remove()
+             power.play()
          } else{
              alert("Not a Valid Login. Enter Credentials or Create Account")
              welcome()
