@@ -46,10 +46,11 @@ function welcome(){
     welcomeText.classList.add('jumbotron','.text-center')
     let login = document.createElement("button");
     login.innerText = "Login";
-    login.classList.add('text-primary')
+    login.classList.add('btn')
     login.addEventListener('click', userLogin);
     let create = document.createElement("button");
     create.innerText = "Create Account";
+    create.classList.add('btn')
     create.addEventListener('click', userCreateAccount);
     buttonContainer.append(login,create)
     welcome.append(welcomeText, buttonContainer)
@@ -64,23 +65,24 @@ function userLogin() {
     let text = document.createElement('h1');
     text.innerText="Login";
     text.classList.add('card-title')
+    text.id = 'loginTxt'
     let form = document.getElementById('login');
     form.className = "form-check form-check-inline";
     let user = document.createElement('input');
     user.placeholder="email";
     user.id = 'u-email';
-    user.className = 'form-check form-check-inline';
+    user.className = 'form-control mb-2 mr-sm-2';
 
     let password = document.createElement('input');
     password.setAttribute('type', 'password');
     password.placeholder="password";
     password.id = 'u-password';
-    password.className = 'form-check form-check-inline';
+    password.className = 'form-control mb-2 mr-sm-2';
 
     let submit = document.createElement('button');
     submit.id = "login-btn";
     submit.innerText="Login";
-    submit.className = 'btn-xs', 'loginSubmit';
+    submit.className = 'btn btn-primary btn-sm';
     formContainer.append(text, form)
     form.append(user, password, submit);
     form.addEventListener('submit', login)
@@ -222,6 +224,7 @@ function createCar(){
 function renderCar(car){
 
     document.getElementById("navbar").style.visibility = "visible";
+    document.getElementById("loginTxt").style.visibility = "hidden";
     let createCarBtn = document.querySelector('#createCarBtn')
     let carForm = document.querySelector('.form-inline')
 
@@ -239,7 +242,7 @@ function renderCar(car){
     make.classList.add("card-title")
     make.innerText=car.make;
     let model = document.createElement('h4');
-    model.innerText=car.model;
+    model.innerHTML=`${car.model}<br>`;
     model.classList.add("card-title")
     let price = document.createElement('h4');
     price.innerText=`$${car.price}`;
@@ -256,7 +259,7 @@ function renderCar(car){
     let link = document.createElement('a');
     link.href=car.link;
     link.classList.add('link')
-    link.innerText= "Manufacturer";
+    link.innerHTML= `<br><h5><b>Manufacturer Site</b></h5>`;
     card.append(img, make, model, price, hp, tq, des, link);
 
     container.appendChild(card)
@@ -432,6 +435,7 @@ function myFavs(event){
                 let card = document.getElementById(`${fav.car.id}`);
                 card.dataset.favId = fav.id;
                 let remove = document.createElement('button');
+                remove.classList.add('btn')
                 remove.innerText="Remove from Favorites";
                 remove.addEventListener('click', deleteFav);
                 card.appendChild(remove)
