@@ -21,8 +21,10 @@
     overflow-y:hidden;
     margin: 10px; 
   }
-  .loginSubmit {
-      padding-left: 5px;
+  #loginSubmit {
+
+      height: 38px;
+      color: white;
   }
 .centerBtn {
     margin: auto;
@@ -30,10 +32,24 @@
     width: 25%;
 
 }
+#logoImg{
+    height: 250px;
+    width: 250px;
+}
+
+    #mainPageLogo {
+        height: 150px;
+        width: 150px;
+    }
 .card{
     background-color: #F2EADC;
 }
+#newacct {
+    margin: auto;
+    text-align: center;
+    width: 25%;
 
+}
   .card-title{
     text-align: center;
   }
