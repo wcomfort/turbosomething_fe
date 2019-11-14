@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 });
 
 function welcome(){
+
     let buttonContainer = document.createElement('div')
     buttonContainer.classList.add('centerBtn')
     document.getElementById("navbar").style.visibility = "hidden";
@@ -80,18 +81,18 @@ function userLogin() {
     password.className = 'form-control mb-2 mr-sm-2';
 
     let submit = document.createElement('button');
-    submit.id = "login-btn";
+    submit.id = "loginSubmit";
     submit.innerText="Login";
-    submit.className = 'btn btn-primary btn-sm';
+    submit.className = 'btn-dark btn-sm';
     formContainer.append(text, form)
     form.append(user, password, submit);
     form.addEventListener('submit', login)
 }
 
 function login(event){
+    event.preventDefault();
     document.body.classList.remove('masthead')
     power.play()
-    event.preventDefault();
     let form = document.getElementById('login');
 
     let email = document.getElementById('u-email').value;
@@ -114,6 +115,7 @@ function login(event){
             form.remove()
          } else{
              alert("Not a Valid Login. Enter Credentials or Create Account")
+             welcome()
          }
         })
 }
@@ -122,10 +124,13 @@ function userCreateAccount(){
     console.log('new account');
     let welcome = document.getElementById('welcome');
     welcome.remove();
+    let textDiv = document.getElementById('textDiv')
     let text = document.createElement('h1');
     text.innerText="Create An Account";
     let div = document.getElementById('newacct');
+    let br2 = document.createElement('br')
 
+    textDiv.append(text, br2, div)
     let form = document.createElement('form');
     let firstName = document.createElement('input');
     firstName.placeholder="First Name";
@@ -147,9 +152,10 @@ function userCreateAccount(){
     submit.id = 'submit';
     form.id = 'create-user-form';
     submit.innerText="Create Account";
-    submit.className = 'btn btn-primary';
+    submit.className = 'btn-dark btn-sm';
+    let br = document.createElement('br')
     div.appendChild(form);
-    form.append(text, firstName, lastName, email, password, submit);
+    form.append( firstName, lastName, email, password, br, submit);
     form.addEventListener('submit', createUser)
 }
 
@@ -175,15 +181,18 @@ function createUser(event){
         .then(user => {
 
             if (user.id == null){
+
                 alert("Please enter all fields in form!")
+                welcome()
             } else{
+                document.querySelector("#create-user-form").innerHTML = ' '
                 getCars()
             }
         });
-      document.querySelector("#create-user-form").innerHTML = ' '
 }
 
 function getCars(){
+
     clearCards();
     fetch('http://localhost:3000/cars')
     .then(res => res.json())
@@ -191,6 +200,9 @@ function getCars(){
         car.forEach((car) =>{
             renderCar(car)})
     })
+    let logoImg = document.getElementById('logoImg')
+    logoImg.src = 'src/black_trasparent_text.png'
+    logoImg.id = 'mainPageLogo'
 }
 
 function createCar(){
@@ -213,7 +225,7 @@ function createCar(){
     <input type="integer"  class="form-control mb-2 mr-sm-2" id="cartq" name="tq" placeholder="Torque">
     <input type="text"  class="form-control mb-2 mr-sm-2" id="cardes" name="des" placeholder="Description">
     <input type="text"  class="form-control mb-2 mr-sm-2" id="carlink" name="link" placeholder="Manufacturer Website">
-    <input type="submit" class="btn btn-primary" name="submit" value="Add Car">
+    <input type="submit" class="btn-dark btn-sm" name="submit" value="Add Car">
         </div>
 
     </form>`;
@@ -223,8 +235,10 @@ function createCar(){
 
 function renderCar(car){
 
+    document.getElementById('logo').innerHTML = ''
     document.getElementById("navbar").style.visibility = "visible";
     document.getElementById("loginTxt").style.visibility = "hidden";
+
     let createCarBtn = document.querySelector('#createCarBtn')
     let carForm = document.querySelector('.form-inline')
 
@@ -262,7 +276,9 @@ function renderCar(car){
     link.innerHTML= `<br><h5><b>Manufacturer Site</b></h5>`;
     card.append(img, make, model, price, hp, tq, des, link);
 
+
     container.appendChild(card)
+
 }
 function submitCar(event){
 
